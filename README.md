@@ -8,6 +8,8 @@
 
 <img src="./docs/screenshot-1.webp" >
 
+<br>
+
 ## ✨ Features
 
 - 🔄 Automatic translation of Laravel language files
@@ -16,6 +18,8 @@
 - 🔍 Smart detection of missing translations
 - 💬 Interactive chat mode for translation refinement
 - ✅ Validation tools for quality assurance
+
+<br>
 
 ## 🚀 Usage
 
@@ -65,6 +69,8 @@ okay_what_about_this.key3: Okay, what about this?
 ...
 ```
 
+<br>
+
 ## 🛠️ Commands
 
 ### Translate Files
@@ -83,6 +89,8 @@ This command translates your language files to all configured languages. It:
 - `--name=<file>` : Translate a specific file only
 - `--language=<code>` : Translate to a specific language only
 - `--base-language=<code>` : Source language (defaults to `app.locale`)
+
+<br>
 
 ### Validate Translations
 
@@ -125,6 +133,8 @@ Checking test in fr...
 ...
 ```
 
+<br>
+
 ### Add New Language
 
 ```bash
@@ -137,6 +147,8 @@ Adds a new language to your application by:
 
 **Options:**
 - `--base-language=<code>` : Source language for translations
+
+<br>
 
 ### Improve Translations
 
@@ -152,6 +164,8 @@ Opens an interactive chat session with the AI to refine translations for:
 **Options:**
 - `--base-language=<code>` : Source language for comparison
 
+<br>
+
 ## 🔧 How It Works
 
 The TranslationFile class reads Laravel's PHP language files into memory, preserving their nested array structure while allowing access through dot notation (e.g., 'auth.failed' => 'message'). It handles both reading existing translations and creating new language files.
@@ -159,6 +173,8 @@ The TranslationFile class reads Laravel's PHP language files into memory, preser
 When translating, the system always provides the full source and target language files to the LLM to ensure it has complete context about the existing translations and their relationships. This helps maintain consistency in terminology and style across the application.
 
 The LLM then returns only the translated strings that need to be added or updated, using dot notation. This selective return is efficient as it allows precise updates without regenerating the entire translation file. These dot-notated translations are automatically merged into the existing translation structure, handling both new keys and updates to existing ones.
+
+<br>
 
 ## ⚙️ Configuration
 
@@ -173,9 +189,13 @@ return [
 ];
 ```
 
+<br>
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit pull requests.
+
+<br>
 
 ## 📄 License
 
