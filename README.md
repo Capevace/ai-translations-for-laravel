@@ -17,19 +17,15 @@
 - 💬 Interactive chat mode for translation refinement
 - ✅ Validation tools for quality assurance
 
-## 🚀 Installation
+## 🚀 Usage
+
+### Step 1: Install the package
 
 ```bash
 composer require mateffy/ai-translations
 ```
 
-Publish the configuration file:
-
-```bash
-php artisan vendor:publish --provider="Mateffy\AiTranslations\AiTranslationServiceProvider"
-```
-
-## 🤖 Authorize LLM
+### Step 2: Configure your LLM provider
 
 This package supports many different LLM providers using [`mateffy/llm-magic`](https://github.com/capevace/llm-magic).
 To use this package, you will need to configure your LLM provider, preferably Anthropic or OpenAI.
@@ -46,6 +42,27 @@ ANTHROPIC_API_KEY=your-api-key
 AI_TRANSLATIONS_MODEL=openai/gpt-4o
 OPENAI_API_KEY=your-api-key
 OPENAI_ORGANIZATION=your-organization # optional
+```
+
+### Step 3: Translate your files!
+
+You are now good to go. Use the `translate` update or create a language file, and use the `translate:validate` command to check for missing translations.
+
+```bash
+$ php artisan translate
+
+AI Translator
+Model: anthropic/claude-3-haiku-20240307
+Source: de
+Languages: cn, en, es, fr, it, pl
+Domains: test
+
+Translating from de to en: test
+Generated translations for test from de to en:
+okay_what_about_this.key: Okay, what about this?
+okay_what_about_this.key2: Okay, what about this?
+okay_what_about_this.key3: Okay, what about this?
+...
 ```
 
 ## 🛠️ Commands
@@ -79,6 +96,34 @@ Performs comprehensive validation of your translations by checking for missing k
 - `--name=<file>` : Validate specific file
 - `--language=<code>` : Validate specific language
 - `--base-language=<code>` : Source language for validation
+
+```bash
+$ php artisan translate:validate
+
+AI Translator: Validation
+Model: anthropic/claude-3-haiku-20240307
+Source: de
+Languages: cn, en, es, fr, it, pl
+Domains: test
+
+Checking test in es...
+
+No missing translations for test in es
+
+Checking test in fr...
+
+****************************************************
+*     Missing translations for `test` in `fr`:     *
+****************************************************
+
++---------------+-------------+
+| Key           | Value       |
++---------------+-------------+
+| something_new | Etwas neues |
+| testing       | Testen      |
++---------------+-------------+
+...
+```
 
 ### Add New Language
 
