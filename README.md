@@ -205,4 +205,3 @@ Contributions are welcome! Please feel free to submit pull requests.
 ## 📄 License
 
 This package is open-source software licensed under the [MIT license](./LICENSE).
-```
