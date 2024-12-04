@@ -1,4 +1,4 @@
-# AI Translations for Laravel 🤖
+# Automatic AI Translations for Laravel 🤖
 
 > Automatically translate your Laravel application's language files with high accuracy and context awareness using the power of LLMs. 
 > 
