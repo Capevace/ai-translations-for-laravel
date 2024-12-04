@@ -8,8 +8,6 @@
 
 <img src="./docs/screenshot-1.webp" >
 
-<br>
-
 ## ✨ Features
 
 - 🔄 Automatic translation of Laravel language files
