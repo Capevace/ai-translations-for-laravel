@@ -4,6 +4,7 @@ namespace Mateffy\AiTranslations;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
 use Laravel\Prompts\TextPrompt;
 use Mateffy\Magic;
@@ -71,8 +72,6 @@ class Translator
             ->toolChoice('translate')
             ->messages([
                 TextMessage::user(<<<PROMPT
-                <task>{$task}</task>
-
                 <{$from->language}-file>
                 {$from->toJson()}
                 </{$from->language}-file>
@@ -84,6 +83,8 @@ class Translator
                 <missing-keys>
                 {$missingKeysText}
                 </missing-keys>
+
+                <task>{$task}</task>
                 PROMPT)
             ])
             ->stream()

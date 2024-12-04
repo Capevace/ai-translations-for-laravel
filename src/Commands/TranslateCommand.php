@@ -11,7 +11,7 @@ use function Laravel\Prompts\confirm;
 
 class TranslateCommand extends Command
 {
-    protected $signature = 'translate {--dry-run} {--name= : The file to translate} {--language= : The language to translate to} {--base-language= : The language to translate from} {--after=}';
+    protected $signature = 'translate {--dry-run} {--skip} {--name= : The file to translate} {--language= : The language to translate to} {--base-language= : The language to translate from} {--after=}';
 
     protected $description = 'Command description';
 
@@ -68,7 +68,7 @@ class TranslateCommand extends Command
                 $missingKeys = $fromFile->compare($toFile);
 
                 if (count($missingKeys) === 0) {
-                    if (!confirm("No missing keys found. Translate the full file again?", default: false)) {
+                    if ($this->option('skip') || !confirm("No missing keys found. Translate the full file again?", default: false)) {
                         continue;
                     }
                 }
@@ -77,7 +77,7 @@ class TranslateCommand extends Command
 
                 $this->info("Generated translations for {$domain} from {$from} to {$language}:");
                 foreach ($translations as $key => $value) {
-                    $this->line("{$key}: {$value}");
+                    $this->line("{$key}: " . json_encode($value));
                 }
 
                 $this->newLine();

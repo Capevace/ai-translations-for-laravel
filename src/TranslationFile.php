@@ -54,12 +54,20 @@ class TranslationFile
         PHP;
     }
 
-    public function set(string $key, string $path): void
+    public function set(string $key, string|array $path): void
     {
-        Arr::set($this->translations, $key, $path);
+        if (is_array($path)) {
+            $path = $this->flatten($path);
+
+            foreach ($path as $subKey => $subValue) {
+                Arr::set($this->translations, $key . '.' . $subKey, $subValue);
+            }
+        } else {
+            Arr::set($this->translations, $key, $path);
+        }
     }
 
-    public function get(string $key): string
+    public function get(string $key): ?string
     {
         return Arr::get($this->translations, $key);
     }

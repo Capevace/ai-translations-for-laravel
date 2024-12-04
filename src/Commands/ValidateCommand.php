@@ -5,15 +5,21 @@ namespace Mateffy\AiTranslations\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+use Laravel\Prompts\Concerns\Colors;
 use Mateffy\AiTranslations\TranslationChat;
 use Mateffy\AiTranslations\TranslationFile;
 use Mateffy\AiTranslations\Translator;
 use Mateffy\Magic;
+use function Laravel\Prompts\error;
+use function Laravel\Prompts\note;
 use function Laravel\Prompts\spin;
-use function Laravel\Prompts\text;
+use function Laravel\Prompts\table;
 
 class ValidateCommand extends Command
 {
+    use Colors;
+
     protected $signature = 'translate:validate {--name=} {--language=} {--base-language=}';
 
     protected $description = 'Check for any missing translations';
@@ -28,7 +34,7 @@ class ValidateCommand extends Command
 		$from = $this->option('base-language') ?? config('app.locale');
 
         if ($language = $this->option('language')) {
-            $languages = [$language];
+            $languages = collect([$language]);
         } else {
             $languages = $this->translator->getLanguages();
         }
@@ -51,32 +57,58 @@ class ValidateCommand extends Command
         $this->comment("Domains: " . $domains->join(', '));
         $this->newLine();
 
+        $verbose = $this->option('verbose');
+        $missing = [];
+
         foreach ($domains as $domain) {
-            $this->line("Checking {$domain}...");
-            $this->newLine();
+            if ($verbose) {
+                $this->line("Checking {$domain}...");
+                $this->newLine();
+            }
 
             $source = TranslationFile::load($from, $domain);
 
             foreach ($languages as $language) {
                 $target = TranslationFile::load($language, $domain);
 
-                $this->line("Checking {$domain} in {$language}...");
-                $this->newLine();
+                if ($verbose) {
+                    $this->line("Checking {$domain} in {$language}...");
+                    $this->newLine();
+                }
 
                 $missingKeys = $source->compare($target);
 
                 if (count($missingKeys) > 0) {
-                    $this->alert("Missing translations for `{$domain}` in `{$language}`:");
-                    $this->table(['Key', 'Value'], collect($missingKeys)
-                        ->map(fn ($key) => [$key, $source->get($key)])
-                    );
-                    $this->newLine();
+                    if ($verbose) {
+                        error("Missing translations for `{$domain}` in `{$language}`:");
+                        table(['Key', 'Value'], collect($missingKeys)
+                            ->map(fn ($key) => [Str::limit($key, 100), Str::limit($source->get($key), 70)])
+                        );
+                        $this->newLine();
+                    }
+
+                    $missing["{$language}/{$domain}"] = count($target->translations) === 0
+                        ? $this->red('–')
+                        : $this->red(count($missingKeys));
                 } else {
-                    $this->info("No missing translations for {$domain} in {$language}");
+                    if ($verbose) {
+                        $this->info("No missing translations for {$domain} in {$language}");
+                    }
+
+                    $missing["{$language}/{$domain}"] = $this->green('✔');
                 }
 
-                $this->newLine();
+                if ($verbose) {
+                    $this->newLine();
+                }
             }
+        }
+
+        if (!$verbose) {
+            table(['Domain', 'Missing Keys'], collect($missing)
+                ->sortKeys()
+                ->map(fn ($count, $domain) => [$domain, $count])
+            );
         }
 	}
 }

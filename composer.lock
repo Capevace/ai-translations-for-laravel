@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "275fcbd97266feef229c77b78ce966cd",
+    "content-hash": "f3f351bda6fbf33a787ee17656ac84c4",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -788,16 +788,10 @@
         {
             "name": "mateffy/llm-magic",
             "version": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Capevace/llm-magic.git",
-                "reference": "7f030086495ecde223ac90ae7af5e85aa5ebcc24"
-            },
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Capevace/llm-magic/zipball/7f030086495ecde223ac90ae7af5e85aa5ebcc24",
-                "reference": "7f030086495ecde223ac90ae7af5e85aa5ebcc24",
-                "shasum": ""
+                "type": "path",
+                "url": "../../../llm-magic",
+                "reference": "7f030086495ecde223ac90ae7af5e85aa5ebcc24"
             },
             "require": {
                 "aws/aws-sdk-php": "^3.315",
@@ -813,7 +807,6 @@
                 "swaggest/json-schema": "^0.12.42",
                 "symfony/http-client": "^7.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -827,7 +820,6 @@
                     "Mateffy\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "AGPL-3.0-only"
             ],
@@ -838,11 +830,9 @@
                 }
             ],
             "description": "A package to magically import complex data structures using LLMs and AI methods.",
-            "support": {
-                "issues": "https://github.com/Capevace/llm-magic/issues",
-                "source": "https://github.com/Capevace/llm-magic/tree/main"
-            },
-            "time": "2024-12-01T14:41:02+00:00"
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "mtdowling/jmespath.php",
@@ -2244,7 +2234,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "mateffy/llm-magic": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

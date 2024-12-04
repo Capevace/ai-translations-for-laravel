@@ -16,11 +16,27 @@
         }
     ],
     "require": {
-        "mateffy/llm-magic": "dev-main"
+        "mateffy/llm-magic": "dev-main",
+        "spatie/laravel-package-tools": "^1.16"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mateffy\\AiTranslations\\AiTranslationsServiceProvider"
+            ]
+        }
     },
     "config": {
+        "sort-packages": true,
         "allow-plugins": {
-            "php-http/discovery": false
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../../llm-magic"
+        }
+    ]
 }
