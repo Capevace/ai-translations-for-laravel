@@ -8,6 +8,11 @@
 
 <img src="./docs/screenshot-1.webp" >
 
+> [!NOTE]  
+> `mateffy/ai-translations` is still pre-release software and currently in beta.
+>
+> You can already install and use the package, but only with `dev-main` versioning, as some stuff may still be subject to change.
+
 ## ✨ Features
 
 - 🔄 Automatic translation of Laravel language files
