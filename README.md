@@ -4,7 +4,7 @@
 > 
 > This package also includes tools for validation of the files, maintaining quality and consistency.
 
-<center><img src="./docs/screenshot-1.webp" width="600"></center>
+<img src="./docs/screenshot-1.webp" width="600" align="center">
 
 ## ✨ Features
 
