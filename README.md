@@ -1,6 +1,8 @@
 # AI Translations for Laravel 🤖
 
 > A powerful Laravel package that leverages LLMs to automatically translate your Laravel application's language files with high accuracy and context awareness. Also includes tools for validation and partial translation for maintaining quality and consistency.
+> 
+> <img src="./docs/screenshot-1.webp" align="center">
 
 ## ✨ Features
 
