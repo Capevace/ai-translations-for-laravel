@@ -1,6 +1,8 @@
 # AI Translations for Laravel 🤖
 
-### Automatically translate your Laravel application's language files with high accuracy and context awareness using the power of LLMs. Translate to completely new languages or keep your existing language files up-to-date, without completely re-generating the full file. 
+> Automatically translate your Laravel application's language files with high accuracy and context awareness using the power of LLMs. 
+> 
+> Translate to completely new languages or keep your existing language files up-to-date, without completely re-generating the full file. 
 > 
 > This package also includes tools for validation of the files, maintaining quality and consistency.
 
@@ -9,7 +11,8 @@
 ## ✨ Features
 
 - 🔄 Automatic translation of Laravel language files
-- 🧠 Context-aware translations using Claude AI
+- 🌐 Translate to new languages or update existing ones without full regeneration
+- 🧠 Context-aware translations
 - 🔍 Smart detection of missing translations
 - 💬 Interactive chat mode for translation refinement
 - ✅ Validation tools for quality assurance
@@ -17,13 +20,32 @@
 ## 🚀 Installation
 
 ```bash
-composer require mateffy/laravel-ai-translations
+composer require mateffy/ai-translations
 ```
 
 Publish the configuration file:
 
 ```bash
 php artisan vendor:publish --provider="Mateffy\AiTranslations\AiTranslationServiceProvider"
+```
+
+## 🤖 Authorize LLM
+
+This package supports many different LLM providers using [`mateffy/llm-magic`](https://github.com/capevace/llm-magic).
+To use this package, you will need to configure your LLM provider, preferably Anthropic or OpenAI.
+
+To do this, add the following variables to your `.env` file.
+For other LLM configurations see the [`llm-magic` documentation](https://github.com/capevace/llm-magic).
+
+```env
+AI_TRANSLATIONS_MODEL=anthropic/claude-3.5-sonnet # default
+ANTHROPIC_API_KEY=your-api-key
+
+# or if you are using OpenAI:
+
+AI_TRANSLATIONS_MODEL=openai/gpt-4o
+OPENAI_API_KEY=your-api-key
+OPENAI_ORGANIZATION=your-organization # optional
 ```
 
 ## 🛠️ Commands
@@ -44,6 +66,19 @@ This command translates your language files to all configured languages. It:
 - `--name=<file>` : Translate a specific file only
 - `--language=<code>` : Translate to a specific language only
 - `--base-language=<code>` : Source language (defaults to `app.locale`)
+
+### Validate Translations
+
+```bash
+php artisan translate:validate
+```
+
+Performs comprehensive validation of your translations by checking for missing keys.
+
+**Options:**
+- `--name=<file>` : Validate specific file
+- `--language=<code>` : Validate specific language
+- `--base-language=<code>` : Source language for validation
 
 ### Add New Language
 
@@ -71,22 +106,6 @@ Opens an interactive chat session with the AI to refine translations for:
 
 **Options:**
 - `--base-language=<code>` : Source language for comparison
-
-### Validate Translations
-
-```bash
-php artisan translate:validate
-```
-
-Performs comprehensive validation of your translations by:
-1. Checking for missing keys
-2. Comparing source and target files
-3. Generating detailed reports
-
-**Options:**
-- `--name=<file>` : Validate specific file
-- `--language=<code>` : Validate specific language
-- `--base-language=<code>` : Source language for validation
 
 ## 🔧 How It Works
 
