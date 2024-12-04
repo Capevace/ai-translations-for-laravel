@@ -1,0 +1,26 @@
+{
+    "name": "mateffy/ai-translations",
+    "description": "Manage your Laravel translations using AI! Auto translate and more!",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Mateffy\\AiTranslations\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lukas Mateffy",
+            "email": "github@mateffy.me"
+        }
+    ],
+    "require": {
+        "mateffy/llm-magic": "dev-main"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": false
+        }
+    }
+}
