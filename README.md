@@ -13,6 +13,8 @@
 >
 > You can already install and use the package, but only with `dev-main` versioning, as some stuff may still be subject to change.
 
+<br>
+
 ## ✨ Features
 
 - 🔄 Automatic translation of Laravel language files
