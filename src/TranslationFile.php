@@ -57,7 +57,7 @@ class TranslationFile
     public function set(string $key, string|array $path): void
     {
         if (is_array($path)) {
-            $path = $this->flatten($path);
+            $path = static::flattenWithValues($path);
 
             foreach ($path as $subKey => $subValue) {
                 Arr::set($this->translations, $key . '.' . $subKey, $subValue);
@@ -74,8 +74,8 @@ class TranslationFile
 
     public function compare(TranslationFile $file): array
     {
-        $flatKeys = $this->flatten($this->translations);
-        $flatFileKeys = $this->flatten($file->translations);
+        $flatKeys = static::flatten($this->translations);
+        $flatFileKeys = static::flatten($file->translations);
 
         return array_diff($flatKeys, $flatFileKeys);
     }
@@ -97,15 +97,31 @@ class TranslationFile
         File::put($path, $this->toPhpArray());
     }
 
-    protected function flatten(array $array, string $prefix = ''): array
+    public static function flatten(array $array, string $prefix = ''): array
     {
         $output = [];
 
         foreach ($array as $key => $value) {
             if (is_array($value)) {
-                $output = array_merge($output, $this->flatten($value, $prefix . $key . '.'));
+                $output = array_merge($output, static::flatten($value, $prefix . $key . '.'));
             } else {
                 $output[] = $prefix . $key;
+            }
+        }
+
+        return $output;
+    }
+
+    // Does the same as flatten, but instead returns a array<key,translation> array
+    public static function flattenWithValues(array $array, string $prefix = ''): array
+    {
+        $output = [];
+
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                $output = array_merge($output, static::flattenWithValues($value, $prefix . $key . '.'));
+            } else {
+                $output[$prefix . $key] = $value;
             }
         }
 

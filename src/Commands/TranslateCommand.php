@@ -7,11 +7,12 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use Mateffy\AiTranslations\TranslationFile;
 use Mateffy\AiTranslations\Translator;
+use Mateffy\Magic\LLM\Exceptions\InvalidRequest;
 use function Laravel\Prompts\confirm;
 
 class TranslateCommand extends Command
 {
-    protected $signature = 'translate {--dry-run} {--skip} {--name= : The file to translate} {--language= : The language to translate to} {--base-language= : The language to translate from} {--after=}';
+    protected $signature = 'translate {--dry-run} {--skip} {--skip-names= : Skip the given files} {--skip-languages= : Skip the given languages} {--name= : The file to translate} {--language= : The language to translate to} {--base-language= : The language to translate from} {--after=}';
 
     protected $description = 'Command description';
 
@@ -25,7 +26,7 @@ class TranslateCommand extends Command
 		$from = $this->option('base-language') ?? config('app.locale');
 
 		if ($language = $this->option('language')) {
-			$languages = collect([$language]);
+			$languages = collect(explode(',', $language));
 		} else {
 			$languages = $this->translator->getLanguages()
                 ->filter(fn ($file) => $file !== $from)
@@ -33,15 +34,14 @@ class TranslateCommand extends Command
 		}
 
 		if ($name = $this->option('name')) {
-			$names = [$name];
+			$names = collect(explode(',', $name));
 		} else {
 			$filesInLangDir = File::files(lang_path($from));
 
 			$names = collect($filesInLangDir)
 				->map(fn ($file) => pathinfo($file, PATHINFO_FILENAME))
 				->unique()
-                ->values()
-				->toArray();
+                ->values();
 		}
 
         $model = $this->translator->getModel();
@@ -50,8 +50,20 @@ class TranslateCommand extends Command
         $this->comment("Model: {$model->getOrganization()->id}/{$model->getModelName()}");
         $this->comment("Source: {$from}");
         $this->comment("Languages: " . $languages->join(', '));
-        $this->comment("Domains: " . implode(', ', $names));
+        $this->comment("Domains: " . $names->join(', '));
         $this->newLine();
+
+        if ($skipNames = $this->option('skip-names')) {
+            $skipNames = explode(',', $skipNames);
+
+            $names = $names->filter(fn ($name) => !in_array($name, $skipNames));
+        }
+
+        if ($skipLanguages = $this->option('skip-languages')) {
+            $skipLanguages = explode(',', $skipLanguages);
+
+            $languages = $languages->filter(fn ($language) => !in_array($language, $skipLanguages));
+        }
 
         foreach ($names as $domain) {
             $fromFile = TranslationFile::load($from, $domain);
@@ -69,6 +81,9 @@ class TranslateCommand extends Command
 
                 if (count($missingKeys) === 0) {
                     if ($this->option('skip') || !confirm("No missing keys found. Translate the full file again?", default: false)) {
+                        $this->line("No missing keys found. Skipping...");
+                        $this->newLine();
+
                         continue;
                     }
                 }

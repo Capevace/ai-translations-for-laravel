@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f3f351bda6fbf33a787ee17656ac84c4",
+    "content-hash": "8bf98c261ced9a7724a0e7b2ff13407e",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.333.0",
+            "version": "3.338.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "11bb2709885c9954004620d3648e9355feb92a41"
+                "reference": "b456832a41f4638ad8d117cedd6efaed4017e651"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/11bb2709885c9954004620d3648e9355feb92a41",
-                "reference": "11bb2709885c9954004620d3648e9355feb92a41",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/b456832a41f4638ad8d117cedd6efaed4017e651",
+                "reference": "b456832a41f4638ad8d117cedd6efaed4017e651",
                 "shasum": ""
             },
             "require": {
@@ -79,31 +79,31 @@
                 "ext-json": "*",
                 "ext-pcre": "*",
                 "ext-simplexml": "*",
-                "guzzlehttp/guzzle": "^6.5.8 || ^7.4.5",
-                "guzzlehttp/promises": "^1.4.0 || ^2.0",
-                "guzzlehttp/psr7": "^1.9.1 || ^2.4.5",
-                "mtdowling/jmespath.php": "^2.6",
-                "php": ">=7.2.5",
-                "psr/http-message": "^1.0 || ^2.0"
+                "guzzlehttp/guzzle": "^7.4.5",
+                "guzzlehttp/promises": "^2.0",
+                "guzzlehttp/psr7": "^2.4.5",
+                "mtdowling/jmespath.php": "^2.8.0",
+                "php": ">=8.1",
+                "psr/http-message": "^2.0"
             },
             "require-dev": {
                 "andrewsville/php-token-reflection": "^1.4",
                 "aws/aws-php-sns-message-validator": "~1.0",
                 "behat/behat": "~3.0",
-                "composer/composer": "^1.10.22",
+                "composer/composer": "^2.7.8",
                 "dms/phpunit-arraysubset-asserts": "^0.4.0",
                 "doctrine/cache": "~1.4",
                 "ext-dom": "*",
                 "ext-openssl": "*",
                 "ext-pcntl": "*",
                 "ext-sockets": "*",
-                "nette/neon": "^2.3",
                 "paragonie/random_compat": ">= 2",
                 "phpunit/phpunit": "^5.6.3 || ^8.5 || ^9.5",
-                "psr/cache": "^1.0 || ^2.0 || ^3.0",
-                "psr/simple-cache": "^1.0 || ^2.0 || ^3.0",
-                "sebastian/comparator": "^1.2.3 || ^4.0",
-                "yoast/phpunit-polyfills": "^1.0"
+                "psr/cache": "^2.0 || ^3.0",
+                "psr/simple-cache": "^2.0 || ^3.0",
+                "sebastian/comparator": "^1.2.3 || ^4.0 || ^5.0",
+                "symfony/filesystem": "^v6.4.0 || ^v7.1.0",
+                "yoast/phpunit-polyfills": "^2.0"
             },
             "suggest": {
                 "aws/aws-php-sns-message-validator": "To validate incoming SNS notifications",
@@ -152,24 +152,24 @@
                 "sdk"
             ],
             "support": {
-                "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
+                "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.333.0"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.338.0"
             },
-            "time": "2024-12-03T19:06:47+00:00"
+            "time": "2025-01-22T19:15:24+00:00"
         },
         {
             "name": "google-gemini-php/client",
-            "version": "1.0.14",
+            "version": "1.0.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/google-gemini-php/client.git",
-                "reference": "11e7413b231dd2ab7ca6169f780d6cc4eeae41a1"
+                "reference": "6dca9a5e6a6de39b230fe4593a8d041efd02e34e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/google-gemini-php/client/zipball/11e7413b231dd2ab7ca6169f780d6cc4eeae41a1",
-                "reference": "11e7413b231dd2ab7ca6169f780d6cc4eeae41a1",
+                "url": "https://api.github.com/repos/google-gemini-php/client/zipball/6dca9a5e6a6de39b230fe4593a8d041efd02e34e",
+                "reference": "6dca9a5e6a6de39b230fe4593a8d041efd02e34e",
                 "shasum": ""
             },
             "require": {
@@ -217,9 +217,9 @@
             ],
             "support": {
                 "issues": "https://github.com/google-gemini-php/client/issues",
-                "source": "https://github.com/google-gemini-php/client/tree/1.0.14"
+                "source": "https://github.com/google-gemini-php/client/tree/1.0.15"
             },
-            "time": "2024-11-06T17:51:13+00:00"
+            "time": "2024-12-29T12:53:49+00:00"
         },
         {
             "name": "greghunt/partial-json",
@@ -596,12 +596,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
-                "reference": "d20a92c3ffeb3e5ced64b45c6adeb5d26f3bc296"
+                "reference": "7ad26e6f53da716901f9a2b95cad0cadce09a8b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/collections/zipball/d20a92c3ffeb3e5ced64b45c6adeb5d26f3bc296",
-                "reference": "d20a92c3ffeb3e5ced64b45c6adeb5d26f3bc296",
+                "url": "https://api.github.com/repos/illuminate/collections/zipball/7ad26e6f53da716901f9a2b95cad0cadce09a8b0",
+                "reference": "7ad26e6f53da716901f9a2b95cad0cadce09a8b0",
                 "shasum": ""
             },
             "require": {
@@ -621,6 +621,7 @@
             },
             "autoload": {
                 "files": [
+                    "functions.php",
                     "helpers.php"
                 ],
                 "psr-4": {
@@ -643,7 +644,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-12-03T16:20:26+00:00"
+            "time": "2025-01-21T16:13:55+00:00"
         },
         {
             "name": "illuminate/conditionable",
@@ -697,12 +698,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "184317f701ba20ca265e36808ed54b75b115972d"
+                "reference": "534b697fc1dd9fbdd9fbf2f33fc9dcbb943dea75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/184317f701ba20ca265e36808ed54b75b115972d",
-                "reference": "184317f701ba20ca265e36808ed54b75b115972d",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/534b697fc1dd9fbdd9fbf2f33fc9dcbb943dea75",
+                "reference": "534b697fc1dd9fbdd9fbf2f33fc9dcbb943dea75",
                 "shasum": ""
             },
             "require": {
@@ -737,7 +738,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-11-25T15:33:38+00:00"
+            "time": "2025-01-10T20:57:00+00:00"
         },
         {
             "name": "illuminate/macroable",
@@ -788,10 +789,16 @@
         {
             "name": "mateffy/llm-magic",
             "version": "dev-main",
-            "dist": {
-                "type": "path",
-                "url": "../../../llm-magic",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Capevace/llm-magic.git",
                 "reference": "7f030086495ecde223ac90ae7af5e85aa5ebcc24"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Capevace/llm-magic/zipball/7f030086495ecde223ac90ae7af5e85aa5ebcc24",
+                "reference": "7f030086495ecde223ac90ae7af5e85aa5ebcc24",
+                "shasum": ""
             },
             "require": {
                 "aws/aws-sdk-php": "^3.315",
@@ -807,6 +814,7 @@
                 "swaggest/json-schema": "^0.12.42",
                 "symfony/http-client": "^7.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -820,6 +828,7 @@
                     "Mateffy\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "AGPL-3.0-only"
             ],
@@ -830,9 +839,11 @@
                 }
             ],
             "description": "A package to magically import complex data structures using LLMs and AI methods.",
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Capevace/llm-magic/issues",
+                "source": "https://github.com/Capevace/llm-magic/tree/main"
+            },
+            "time": "2024-12-01T14:41:02+00:00"
         },
         {
             "name": "mtdowling/jmespath.php",
@@ -1671,16 +1682,16 @@
         },
         {
             "name": "spatie/laravel-package-tools",
-            "version": "1.16.6",
+            "version": "1.18.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-package-tools.git",
-                "reference": "1f26942dc1e5c49eacfced34fdbc29ed234bd7b3"
+                "reference": "ba67eee37d86ed775dab7dad58a7cbaf9a6cfe78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/1f26942dc1e5c49eacfced34fdbc29ed234bd7b3",
-                "reference": "1f26942dc1e5c49eacfced34fdbc29ed234bd7b3",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/ba67eee37d86ed775dab7dad58a7cbaf9a6cfe78",
+                "reference": "ba67eee37d86ed775dab7dad58a7cbaf9a6cfe78",
                 "shasum": ""
             },
             "require": {
@@ -1689,10 +1700,10 @@
             },
             "require-dev": {
                 "mockery/mockery": "^1.5",
-                "orchestra/testbench": "^7.7|^8.0",
-                "pestphp/pest": "^1.22",
-                "phpunit/phpunit": "^9.5.24",
-                "spatie/pest-plugin-test-time": "^1.1"
+                "orchestra/testbench": "^7.7|^8.0|^9.0",
+                "pestphp/pest": "^1.22|^2",
+                "phpunit/phpunit": "^9.5.24|^10.5",
+                "spatie/pest-plugin-test-time": "^1.1|^2.2"
             },
             "type": "library",
             "autoload": {
@@ -1719,7 +1730,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-package-tools/issues",
-                "source": "https://github.com/spatie/laravel-package-tools/tree/1.16.6"
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.18.3"
             },
             "funding": [
                 {
@@ -1727,7 +1738,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-18T15:02:02+00:00"
+            "time": "2025-01-22T08:51:18+00:00"
         },
         {
             "name": "swaggest/json-diff",
@@ -1774,21 +1785,21 @@
         },
         {
             "name": "swaggest/json-schema",
-            "version": "v0.12.42",
+            "version": "v0.12.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swaggest/php-json-schema.git",
-                "reference": "d23adb53808b8e2da36f75bc0188546e4cbe3b45"
+                "reference": "1f3a77a382c5d273a0f1fe34be3b8af4060a88cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swaggest/php-json-schema/zipball/d23adb53808b8e2da36f75bc0188546e4cbe3b45",
-                "reference": "d23adb53808b8e2da36f75bc0188546e4cbe3b45",
+                "url": "https://api.github.com/repos/swaggest/php-json-schema/zipball/1f3a77a382c5d273a0f1fe34be3b8af4060a88cd",
+                "reference": "1f3a77a382c5d273a0f1fe34be3b8af4060a88cd",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "php": ">=5.4",
+                "php": ">=7.1",
                 "phplang/scope-exit": "^1.0",
                 "swaggest/json-diff": "^3.8.2",
                 "symfony/polyfill-mbstring": "^1.19"
@@ -1819,9 +1830,9 @@
             "support": {
                 "email": "vearutop@gmail.com",
                 "issues": "https://github.com/swaggest/php-json-schema/issues",
-                "source": "https://github.com/swaggest/php-json-schema/tree/v0.12.42"
+                "source": "https://github.com/swaggest/php-json-schema/tree/v0.12.43"
             },
-            "time": "2023-09-12T14:43:42+00:00"
+            "time": "2024-12-22T21:18:27+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -1843,12 +1854,12 @@
             "default-branch": true,
             "type": "library",
             "extra": {
+                "thanks": {
+                    "url": "https://github.com/symfony/contracts",
+                    "name": "symfony/contracts"
+                },
                 "branch-alias": {
                     "dev-main": "3.6-dev"
-                },
-                "thanks": {
-                    "name": "symfony/contracts",
-                    "url": "https://github.com/symfony/contracts"
                 }
             },
             "autoload": {
@@ -1897,19 +1908,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client.git",
-                "reference": "955e43336aff03df1e8a8e17daefabb0127a313b"
+                "reference": "542cbd21d3c327482119041e222b027b3e3daab7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client/zipball/955e43336aff03df1e8a8e17daefabb0127a313b",
-                "reference": "955e43336aff03df1e8a8e17daefabb0127a313b",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/542cbd21d3c327482119041e222b027b3e3daab7",
+                "reference": "542cbd21d3c327482119041e222b027b3e3daab7",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.2",
                 "psr/log": "^1|^2|^3",
                 "symfony/deprecation-contracts": "^2.5|^3",
-                "symfony/http-client-contracts": "~3.4.3|^3.5.1",
+                "symfony/http-client-contracts": "~3.4.4|^3.5.2",
                 "symfony/service-contracts": "^2.5|^3"
             },
             "conflict": {
@@ -1968,7 +1979,7 @@
                 "http"
             ],
             "support": {
-                "source": "https://github.com/symfony/http-client/tree/7.2"
+                "source": "https://github.com/symfony/http-client/tree/7.3"
             },
             "funding": [
                 {
@@ -1984,7 +1995,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-11-29T08:22:02+00:00"
+            "time": "2025-01-17T11:48:14+00:00"
         },
         {
             "name": "symfony/http-client-contracts",
@@ -1992,12 +2003,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client-contracts.git",
-                "reference": "7917bba9674e386bc2726c4bb9ad5440f7831d66"
+                "reference": "d8d46d0f605337624f8b28fc4acf346c5156533b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client-contracts/zipball/7917bba9674e386bc2726c4bb9ad5440f7831d66",
-                "reference": "7917bba9674e386bc2726c4bb9ad5440f7831d66",
+                "url": "https://api.github.com/repos/symfony/http-client-contracts/zipball/d8d46d0f605337624f8b28fc4acf346c5156533b",
+                "reference": "d8d46d0f605337624f8b28fc4acf346c5156533b",
                 "shasum": ""
             },
             "require": {
@@ -2006,12 +2017,12 @@
             "default-branch": true,
             "type": "library",
             "extra": {
+                "thanks": {
+                    "url": "https://github.com/symfony/contracts",
+                    "name": "symfony/contracts"
+                },
                 "branch-alias": {
                     "dev-main": "3.6-dev"
-                },
-                "thanks": {
-                    "name": "symfony/contracts",
-                    "url": "https://github.com/symfony/contracts"
                 }
             },
             "autoload": {
@@ -2063,7 +2074,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-11-19T10:11:42+00:00"
+            "time": "2024-12-11T15:34:14+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -2071,15 +2082,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "2369cb908b33d7b7518cce042615de430142497f"
+                "reference": "6d857f4d76bd4b343eac26d6b539585d2bc56493"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/2369cb908b33d7b7518cce042615de430142497f",
-                "reference": "2369cb908b33d7b7518cce042615de430142497f",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/6d857f4d76bd4b343eac26d6b539585d2bc56493",
+                "reference": "6d857f4d76bd4b343eac26d6b539585d2bc56493",
                 "shasum": ""
             },
             "require": {
+                "ext-iconv": "*",
                 "php": ">=7.2"
             },
             "provide": {
@@ -2092,8 +2104,8 @@
             "type": "library",
             "extra": {
                 "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
                 }
             },
             "autoload": {
@@ -2144,7 +2156,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-10T14:38:51+00:00"
+            "time": "2024-12-23T08:48:59+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -2171,12 +2183,12 @@
             "default-branch": true,
             "type": "library",
             "extra": {
+                "thanks": {
+                    "url": "https://github.com/symfony/contracts",
+                    "name": "symfony/contracts"
+                },
                 "branch-alias": {
                     "dev-main": "3.6-dev"
-                },
-                "thanks": {
-                    "name": "symfony/contracts",
-                    "url": "https://github.com/symfony/contracts"
                 }
             },
             "autoload": {
@@ -2239,7 +2251,7 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
+    "platform": {},
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

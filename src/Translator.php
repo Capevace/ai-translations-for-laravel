@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
 use Laravel\Prompts\TextPrompt;
 use Mateffy\Magic;
+use Mateffy\Magic\LLM\Exceptions\InvalidRequest;
 use Mateffy\Magic\LLM\Message\TextMessage;
 
 class Translator
@@ -28,7 +29,7 @@ class Translator
 
     public function getModel(): Magic\LLM\LLM
     {
-        return Magic\LLM\ElElEm::fromString('anthropic/claude-3-haiku');
+        return Magic\LLM\Models\Claude3Family::sonnet_3_5();
     }
 
     public function translate(TranslationFile $from, TranslationFile $to, array $missingKeys): array
@@ -59,35 +60,74 @@ class Translator
 //            ->map(fn ($key) => "{$key}: {$from->get($key)}")
             ->implode("\n");
 
-        return Magic::chat()
-            ->model($this->getModel())
-            ->system($systemPrompt)
-            ->tools([
-                /**
-                 * @description Translate the missing keys or the full file. Pass a flat key-value array of translations (array<string, string>).
-                 * @type $translations {"type":"object","additionalProperties":{"type":"string"}}
-                 */
-                'translate' => fn (array $translations) => Magic::end($translations)
-            ])
-            ->toolChoice('translate')
-            ->messages([
-                TextMessage::user(<<<PROMPT
-                <{$from->language}-file>
-                {$from->toJson()}
-                </{$from->language}-file>
+        $allTranslations = collect();
 
-                <{$to->language}-file>
-                {$to->toJson()}
-                </{$to->language}-file>
+        try {
+            return Magic::chat()
+                ->model($this->getModel())
+                ->system($systemPrompt)
+                ->tools([
+                    /**
+                     * @description Translate the missing keys or the full file. Pass a flat key-value array of translations (array<string, string>). DO NOT NEST ARRAYS, ONLY FLAT KEY-VALUE PAIRS OF DOT-NOTATED KEYS and their values.
+                     * @type $translations {"type":"object","additionalProperties":{"type":"string"}}
+                     */
+                    'translate' => function (array $translations = []) use ($missingKeys, &$allTranslations) {
+                        // If the AI doesn't return a string[] array, we tell it to try again.
+                        $hasNestedTranslations = collect($translations)
+                            ->some(fn($value) => is_array($value));
 
-                <missing-keys>
-                {$missingKeysText}
-                </missing-keys>
+                        if ($hasNestedTranslations) {
+                            $translations = TranslationFile::flattenWithValues($translations);
+                            //                        return Magic::error('The translations you have given is not a flat array<string, string> array. The response needs to be a flat array, keyed by dot-notated keys and their translations. For example ["key1.subkey1": "translation1", "key1.subkey2": "translation2"]. Please try again.');
+                        }
 
-                <task>{$task}</task>
-                PROMPT)
-            ])
-            ->stream()
-            ->lastData();
+                        $allTranslations = $allTranslations->merge($translations);
+
+                        $currentlyMissingKeys = collect($missingKeys)
+                            ->filter(fn(string $key) => empty($allTranslations[$key] ?? null))
+                            ->values();
+
+                        if ($currentlyMissingKeys->isNotEmpty()) {
+                            return Magic::error('The translations you have given are missing some keys. Skip the ones you just translated and please translate and add the following missing keys: ' . $currentlyMissingKeys->join(', ') . '. IT IS NOW OKAY TO ONLY TRANSLATE THE MISSING KEYS. DO NOT RE-TRANSLATE THE KEYS YOU HAVE ALREADY TRANSLATED.');
+                        }
+
+                        return Magic::end($allTranslations);
+                    }
+                ])
+                ->toolChoice('translate')
+//                ->onMessageProgress(fn ($message) => dump($message->partial ?? $message))
+                ->messages([
+                    TextMessage::user(<<<PROMPT
+                    <{$from->language}-file>
+                    {$from->toJson()}
+                    </{$from->language}-file>
+                    
+                    <{$to->language}-file>
+                    {$to->toJson()}
+                    </{$to->language}-file>
+                    
+                    <missing-keys>
+                    {$missingKeysText}
+                    </missing-keys>
+                    
+                    <task>{$task}</task>
+                    PROMPT
+                    )
+                ])
+                ->stream()
+                ->lastData();
+        } catch (InvalidRequest $request) {
+            if (str($request->getMessage())->startsWith('This request would exceed your organization')) {
+                dump([
+                    'Exceeded rate limits, waiting for 60 seconds...',
+                ]);
+
+                sleep(60);
+
+                return $this->translate($from, $to, $missingKeys);
+            }
+
+            throw $request;
+        }
     }
 }

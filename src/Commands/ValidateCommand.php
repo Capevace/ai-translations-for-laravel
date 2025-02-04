@@ -34,13 +34,13 @@ class ValidateCommand extends Command
 		$from = $this->option('base-language') ?? config('app.locale');
 
         if ($language = $this->option('language')) {
-            $languages = collect([$language]);
+            $languages = collect(explode(',', $language));
         } else {
             $languages = $this->translator->getLanguages();
         }
 
         if ($name = $this->option('name')) {
-            $domains = [$name];
+            $domains = collect(explode(',', $name));
         } else {
             $domains = collect(File::files(lang_path($from)))
                 ->filter(fn ($file) => $file->getExtension() === 'php')

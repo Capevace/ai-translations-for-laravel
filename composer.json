@@ -33,7 +33,7 @@
             "php-http/discovery": true
         }
     },
-    "repositories": [
+    "_repositories": [
         {
             "type": "path",
             "url": "../../../llm-magic"
