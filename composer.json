@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "mateffy/llm-magic": "dev-main",
+        "mateffy/llm-magic": "^1.0",
         "spatie/laravel-package-tools": "^1.16"
     },
     "extra": {
