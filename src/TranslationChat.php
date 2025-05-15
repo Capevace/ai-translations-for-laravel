@@ -3,6 +3,7 @@
 namespace Mateffy\AiTranslations;
 
 use Mateffy\Magic;
+use Mateffy\Magic\Chat\Messages\TextMessage;
 
 class TranslationChat
 {
@@ -59,7 +60,7 @@ class TranslationChat
             `
             PROMPT)
             ->messages([
-                Magic\LLM\Message\TextMessage::user(<<<PROMPT
+                TextMessage::user(<<<PROMPT
                 Hi, I'm a Laravel developer and I need help with my translations.
                 I need you to take a look at my {$this->domain} translation domain/file.
                 I have a file in the {$this->source} language that I want to translate to {$this->target}.

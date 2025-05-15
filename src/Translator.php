@@ -4,12 +4,9 @@ namespace Mateffy\AiTranslations;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Log;
-use InvalidArgumentException;
-use Laravel\Prompts\TextPrompt;
 use Mateffy\Magic;
-use Mateffy\Magic\LLM\Exceptions\InvalidRequest;
-use Mateffy\Magic\LLM\Message\TextMessage;
+use Mateffy\Magic\Chat\Messages\TextMessage;
+use Mateffy\Magic\Exceptions\InvalidRequest;
 
 class Translator
 {
@@ -27,9 +24,9 @@ class Translator
             ->values();
     }
 
-    public function getModel(): Magic\LLM\LLM
+    public function getModel(): Magic\Models\LLM
     {
-        return Magic\LLM\Models\Claude3Family::sonnet_3_5();
+        return Magic\Models\ElElEm::fromString(config('ai-translations.model'));
     }
 
     public function translate(TranslationFile $from, TranslationFile $to, array $missingKeys): array
